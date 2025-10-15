@@ -1,0 +1,306 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:order_id",
+ "creation": "2025-10-14 16:46:45.066679",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "order_id",
+  "currency",
+  "amount",
+  "column_break_kyjr",
+  "transaction_reference_id",
+  "section_break_yayb",
+  "cashier",
+  "payment_modes",
+  "column_break_hrjk",
+  "store",
+  "terminal",
+  "amended_from",
+  "transaction_details_section",
+  "tid",
+  "mid",
+  "rrn",
+  "batch_number",
+  "approval_code",
+  "column_break_ouqs",
+  "payment_mode",
+  "invoice_number",
+  "transaction_date",
+  "transaction_time",
+  "column_break_yevm",
+  "is_partial_pay_by_points",
+  "partial_amount_by_card",
+  "partial_amount_by_reward",
+  "expiry_date",
+  "column_break_puge",
+  "transaction_amount",
+  "transaction_amount_in_paisa",
+  "original_amount",
+  "final_amount",
+  "section_break_kzwj",
+  "acquirer_id",
+  "column_break_hqal",
+  "acquirer_name",
+  "card_details_section",
+  "card_type",
+  "column_break_wlug",
+  "card_number"
+ ],
+ "fields": [
+  {
+   "fieldname": "order_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Order Id",
+   "read_only": 1,
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "label": "Amount",
+   "options": "currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_kyjr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "transaction_reference_id",
+   "fieldtype": "Int",
+   "label": "Transaction Reference ID",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_yayb",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "cashier",
+   "fieldtype": "Link",
+   "label": "Cashier",
+   "options": "User"
+  },
+  {
+   "fieldname": "payment_modes",
+   "fieldtype": "Table MultiSelect",
+   "label": "Payment Modes",
+   "options": "PineLabs Payment Modes",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_hrjk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "store",
+   "fieldtype": "Link",
+   "label": "Store",
+   "options": "PineLabs Store"
+  },
+  {
+   "fieldname": "terminal",
+   "fieldtype": "Link",
+   "label": "Terminal",
+   "options": "PineLabs Terminal"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "PineLabs Order",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "transaction_details_section",
+   "fieldtype": "Section Break",
+   "label": "Transaction Details",
+   "read_only": 1
+  },
+  {
+   "fieldname": "tid",
+   "fieldtype": "Data",
+   "label": "TID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "mid",
+   "fieldtype": "Int",
+   "label": "MID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "rrn",
+   "fieldtype": "Int",
+   "label": "RRN",
+   "read_only": 1
+  },
+  {
+   "fieldname": "batch_number",
+   "fieldtype": "Int",
+   "label": "Batch Number"
+  },
+  {
+   "fieldname": "approval_code",
+   "fieldtype": "Int",
+   "label": "Approval Code"
+  },
+  {
+   "fieldname": "column_break_ouqs",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "payment_mode",
+   "fieldtype": "Data",
+   "label": "Payment Mode"
+  },
+  {
+   "fieldname": "invoice_number",
+   "fieldtype": "Int",
+   "label": "Invoice Number"
+  },
+  {
+   "fieldname": "transaction_date",
+   "fieldtype": "Date",
+   "label": "Transaction Date"
+  },
+  {
+   "fieldname": "transaction_time",
+   "fieldtype": "Datetime",
+   "label": "Transaction Time"
+  },
+  {
+   "fieldname": "column_break_yevm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_partial_pay_by_points",
+   "fieldtype": "Check",
+   "label": "Is Partial Pay By Points"
+  },
+  {
+   "fieldname": "partial_amount_by_card",
+   "fieldtype": "Currency",
+   "label": "Partial Amount By Card"
+  },
+  {
+   "fieldname": "partial_amount_by_reward",
+   "fieldtype": "Currency",
+   "label": "Partial Amount By Reward"
+  },
+  {
+   "fieldname": "expiry_date",
+   "fieldtype": "Date",
+   "label": "Expiry Date"
+  },
+  {
+   "fieldname": "column_break_puge",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "transaction_amount",
+   "fieldtype": "Currency",
+   "label": "Transaction Amount",
+   "options": "currency"
+  },
+  {
+   "fieldname": "transaction_amount_in_paisa",
+   "fieldtype": "Int",
+   "label": "Transaction Amount In Paisa"
+  },
+  {
+   "fieldname": "original_amount",
+   "fieldtype": "Currency",
+   "label": "Original Amount",
+   "options": "currency"
+  },
+  {
+   "fieldname": "final_amount",
+   "fieldtype": "Currency",
+   "label": "Final Amount",
+   "options": "currency"
+  },
+  {
+   "fieldname": "section_break_kzwj",
+   "fieldtype": "Section Break",
+   "label": "Acquirer Details",
+   "read_only": 1
+  },
+  {
+   "fieldname": "acquirer_id",
+   "fieldtype": "Int",
+   "label": "Acquirer ID"
+  },
+  {
+   "fieldname": "column_break_hqal",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "acquirer_name",
+   "fieldtype": "Data",
+   "label": "Acquirer Name"
+  },
+  {
+   "fieldname": "card_details_section",
+   "fieldtype": "Section Break",
+   "label": "Card Details",
+   "read_only": 1
+  },
+  {
+   "fieldname": "card_number",
+   "fieldtype": "Data",
+   "label": "Card Number"
+  },
+  {
+   "fieldname": "card_type",
+   "fieldtype": "Data",
+   "label": "Card Type"
+  },
+  {
+   "fieldname": "column_break_wlug",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-10-15 11:15:55.759753",
+ "modified_by": "Administrator",
+ "module": "Pine Labs",
+ "name": "PineLabs Order",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,70 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-10-14 16:44:48.494365",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "enabled",
+  "section_break_djac",
+  "client_id",
+  "merchant_id",
+  "security_token"
+ ],
+ "fields": [
+  {
+   "default": "0",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enabled"
+  },
+  {
+   "fieldname": "section_break_djac",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "enabled",
+   "fieldname": "client_id",
+   "fieldtype": "Int",
+   "label": "Client ID",
+   "mandatory_depends_on": "enabled"
+  },
+  {
+   "depends_on": "enabled",
+   "fieldname": "merchant_id",
+   "fieldtype": "Int",
+   "label": "Merchant ID",
+   "mandatory_depends_on": "enabled"
+  },
+  {
+   "depends_on": "enabled",
+   "fieldname": "security_token",
+   "fieldtype": "Password",
+   "label": "Security Token",
+   "mandatory_depends_on": "enabled"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2025-10-14 17:16:06.758677",
+ "modified_by": "Administrator",
+ "module": "Pine Labs",
+ "name": "PineLabs Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
