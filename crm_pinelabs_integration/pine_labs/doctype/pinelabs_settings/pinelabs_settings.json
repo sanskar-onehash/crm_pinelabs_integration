@@ -22,6 +22,7 @@
    "label": "Enabled"
   },
   {
+   "depends_on": "enabled",
    "fieldname": "section_break_djac",
    "fieldtype": "Section Break"
   },
@@ -38,6 +39,7 @@
    "mandatory_depends_on": "enabled"
   },
   {
+   "depends_on": "enabled",
    "fieldname": "section_break_knpl",
    "fieldtype": "Section Break"
   },
@@ -63,7 +65,7 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2025-10-16 12:09:05.432995",
+ "modified": "2025-10-16 14:44:36.323821",
  "modified_by": "Administrator",
  "module": "Pine Labs",
  "name": "PineLabs Settings",
