@@ -31,6 +31,7 @@
   {
    "fieldname": "store_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Store Name",
    "reqd": 1
   },
@@ -47,7 +48,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-16 12:18:45.407796",
+ "modified": "2025-10-16 14:48:55.994431",
  "modified_by": "Administrator",
  "module": "Pine Labs",
  "name": "PineLabs Store",
