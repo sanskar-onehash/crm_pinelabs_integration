@@ -1,39 +1,37 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:client_id",
- "creation": "2025-10-15 10:17:34.506936",
+ "autoname": "field:bank_code",
+ "creation": "2025-10-16 09:32:00.540823",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "client_id",
-  "terminal_name"
+  "bank_code",
+  "upi_bank_name"
  ],
  "fields": [
   {
-   "fieldname": "client_id",
+   "fieldname": "bank_code",
    "fieldtype": "Int",
-   "in_list_view": 1,
-   "label": "Client ID",
+   "label": "Bank Code",
    "non_negative": 1,
    "reqd": 1,
    "unique": 1
   },
   {
-   "fieldname": "terminal_name",
+   "fieldname": "upi_bank_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Terminal Name/Code",
-   "reqd": 1,
-   "unique": 1
+   "label": "UPI Bank Name",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-16 12:12:02.012809",
+ "modified": "2025-10-16 10:05:03.625469",
  "modified_by": "Administrator",
  "module": "Pine Labs",
- "name": "PineLabs Terminal",
+ "name": "PineLabs UPI Bank",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
@@ -54,5 +52,5 @@
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
- "title_field": "terminal_name"
+ "title_field": "upi_bank_name"
 }

@@ -9,8 +9,20 @@
   "order_id",
   "currency",
   "amount",
+  "customer",
+  "company",
+  "company_currency",
   "column_break_kyjr",
   "transaction_reference_id",
+  "payment_entry",
+  "posting_date",
+  "status",
+  "pinelabs_status",
+  "column_break_vaup",
+  "reference_type",
+  "reference_link",
+  "reference_fieldname",
+  "reference_pe_fieldname",
   "section_break_yayb",
   "cashier",
   "payment_modes",
@@ -46,7 +58,13 @@
   "card_details_section",
   "card_type",
   "column_break_wlug",
-  "card_number"
+  "card_number",
+  "references_section",
+  "reference_invoices",
+  "callback_urls_section",
+  "success_url",
+  "column_break_ifdw",
+  "failed_url"
  ],
  "fields": [
   {
@@ -91,7 +109,8 @@
    "fieldname": "cashier",
    "fieldtype": "Link",
    "label": "Cashier",
-   "options": "User"
+   "options": "User",
+   "reqd": 1
   },
   {
    "fieldname": "payment_modes",
@@ -108,13 +127,15 @@
    "fieldname": "store",
    "fieldtype": "Link",
    "label": "Store",
-   "options": "PineLabs Store"
+   "options": "PineLabs Store",
+   "reqd": 1
   },
   {
    "fieldname": "terminal",
    "fieldtype": "Link",
    "label": "Terminal",
-   "options": "PineLabs Terminal"
+   "options": "PineLabs Terminal",
+   "reqd": 1
   },
   {
    "fieldname": "amended_from",
@@ -275,12 +296,113 @@
   {
    "fieldname": "column_break_wlug",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company"
+  },
+  {
+   "fieldname": "company_currency",
+   "fieldtype": "Link",
+   "label": "Company Currency",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "payment_entry",
+   "fieldtype": "Link",
+   "label": "Payment Entry",
+   "options": "Payment Entry"
+  },
+  {
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date"
+  },
+  {
+   "fieldname": "column_break_vaup",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "reference_type",
+   "fieldtype": "Link",
+   "label": "Reference Type",
+   "options": "DocType"
+  },
+  {
+   "depends_on": "reference_type",
+   "fieldname": "reference_link",
+   "fieldtype": "Dynamic Link",
+   "label": "Reference Link",
+   "options": "reference_type"
+  },
+  {
+   "depends_on": "eval: doc.reference_type && doc.reference_link",
+   "fieldname": "reference_fieldname",
+   "fieldtype": "Data",
+   "label": "Reference Fieldname"
+  },
+  {
+   "depends_on": "eval: doc.reference_type && doc.reference_link",
+   "fieldname": "reference_pe_fieldname",
+   "fieldtype": "Data",
+   "label": "Reference Payment Entry Fieldname"
+  },
+  {
+   "fieldname": "references_section",
+   "fieldtype": "Section Break",
+   "label": "References"
+  },
+  {
+   "fieldname": "reference_invoices",
+   "fieldtype": "Table",
+   "label": "Reference Invoices",
+   "options": "PineLabs Reference Invoices"
+  },
+  {
+   "fieldname": "callback_urls_section",
+   "fieldtype": "Section Break",
+   "label": "Callback URLs"
+  },
+  {
+   "fieldname": "success_url",
+   "fieldtype": "Small Text",
+   "label": "Success URL"
+  },
+  {
+   "fieldname": "column_break_ifdw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "failed_url",
+   "fieldtype": "Small Text",
+   "label": "Failed URL"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "pinelabs_status",
+   "fieldtype": "Data",
+   "label": "PineLabs Status",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-10-15 11:15:55.759753",
+ "modified": "2025-10-16 14:11:38.547747",
  "modified_by": "Administrator",
  "module": "Pine Labs",
  "name": "PineLabs Order",

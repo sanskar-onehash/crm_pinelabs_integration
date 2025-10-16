@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "field:store_id",
  "creation": "2025-10-14 15:35:14.793712",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -8,7 +9,8 @@
   "store_id",
   "store_name",
   "column_break_iwiw",
-  "terminals"
+  "terminals",
+  "is_default"
  ],
  "fields": [
   {
@@ -23,7 +25,8 @@
    "in_list_view": 1,
    "label": "Store ID",
    "non_negative": 1,
-   "reqd": 1
+   "reqd": 1,
+   "unique": 1
   },
   {
    "fieldname": "store_name",
@@ -34,14 +37,21 @@
   {
    "fieldname": "column_break_iwiw",
    "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_default",
+   "fieldtype": "Check",
+   "label": "Is Default"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-15 10:22:10.312910",
+ "modified": "2025-10-16 12:18:45.407796",
  "modified_by": "Administrator",
  "module": "Pine Labs",
  "name": "PineLabs Store",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
@@ -57,7 +67,9 @@
    "write": 1
   }
  ],
+ "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "store_name"
 }

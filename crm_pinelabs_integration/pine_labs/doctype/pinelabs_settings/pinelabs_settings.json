@@ -7,9 +7,12 @@
  "field_order": [
   "enabled",
   "section_break_djac",
-  "client_id",
   "merchant_id",
-  "security_token"
+  "security_token",
+  "column_break_zyqz",
+  "base_uri",
+  "section_break_knpl",
+  "auto_cancel_duration"
  ],
  "fields": [
   {
@@ -23,31 +26,44 @@
    "fieldtype": "Section Break"
   },
   {
-   "depends_on": "enabled",
-   "fieldname": "client_id",
-   "fieldtype": "Int",
-   "label": "Client ID",
-   "mandatory_depends_on": "enabled"
-  },
-  {
-   "depends_on": "enabled",
    "fieldname": "merchant_id",
    "fieldtype": "Int",
    "label": "Merchant ID",
    "mandatory_depends_on": "enabled"
   },
   {
-   "depends_on": "enabled",
    "fieldname": "security_token",
    "fieldtype": "Password",
    "label": "Security Token",
    "mandatory_depends_on": "enabled"
+  },
+  {
+   "fieldname": "section_break_knpl",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "5",
+   "description": "Request canceled automatically if not successful on the Swipe machine.",
+   "fieldname": "auto_cancel_duration",
+   "fieldtype": "Int",
+   "label": "Auto Cancel Duration (In Minutes)",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "column_break_zyqz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "https://www.plutuscloudserviceuat.in:8201/API",
+   "fieldname": "base_uri",
+   "fieldtype": "Small Text",
+   "label": "Base URI"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2025-10-14 17:16:06.758677",
+ "modified": "2025-10-16 12:09:05.432995",
  "modified_by": "Administrator",
  "module": "Pine Labs",
  "name": "PineLabs Settings",
