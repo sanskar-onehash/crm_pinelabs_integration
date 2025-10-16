@@ -115,8 +115,6 @@ def create_order(
     reference_fieldname=None,
     reference_pe_fieldname=None,
     auto_cancel_in_mins=None,
-    success_url=None,
-    failed_url=None,
     upi_bank=None,
     original_order_id=None,
     subscribe_for_updates=True,
@@ -164,14 +162,6 @@ def create_order(
 
     order_id = service.generate_order_id()
 
-    if success_url:
-        separator = "&" if "?" in success_url else "?"
-        success_url += f"{separator}order_id={order_id}"
-
-    if failed_url:
-        separator = "&" if "?" in failed_url else "?"
-        failed_url += f"{separator}order_id={order_id}"
-
     order_doc = frappe.get_doc(
         {
             "doctype": "PineLabs Order",
@@ -188,8 +178,6 @@ def create_order(
             "cashier": frappe.session.user,
             "store": store,
             "terminal": terminal,
-            "success_url": success_url,
-            "failed_url": failed_url,
         }
     )
     for payment_mode in payment_modes or ["0"]:  # Set "All Modes" or Mode 0 as default

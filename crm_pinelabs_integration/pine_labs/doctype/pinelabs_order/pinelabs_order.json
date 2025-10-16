@@ -60,11 +60,7 @@
   "column_break_wlug",
   "card_number",
   "references_section",
-  "reference_invoices",
-  "callback_urls_section",
-  "success_url",
-  "column_break_ifdw",
-  "failed_url"
+  "reference_invoices"
  ],
  "fields": [
   {
@@ -368,25 +364,6 @@
    "options": "PineLabs Reference Invoices"
   },
   {
-   "fieldname": "callback_urls_section",
-   "fieldtype": "Section Break",
-   "label": "Callback URLs"
-  },
-  {
-   "fieldname": "success_url",
-   "fieldtype": "Small Text",
-   "label": "Success URL"
-  },
-  {
-   "fieldname": "column_break_ifdw",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "failed_url",
-   "fieldtype": "Small Text",
-   "label": "Failed URL"
-  },
-  {
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "Status",
@@ -402,7 +379,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-10-16 14:11:38.547747",
+ "modified": "2025-10-16 15:37:17.886659",
  "modified_by": "Administrator",
  "module": "Pine Labs",
  "name": "PineLabs Order",
