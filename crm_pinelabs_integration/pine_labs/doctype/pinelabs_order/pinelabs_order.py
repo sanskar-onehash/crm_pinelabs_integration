@@ -213,6 +213,7 @@ def create_order(
     # Commit because order is created on PineLabs
     # Hence cannot miss in system incase of Get request
     frappe.db.commit()
+    return order_doc.as_dict()
 
 
 @frappe.whitelist()
