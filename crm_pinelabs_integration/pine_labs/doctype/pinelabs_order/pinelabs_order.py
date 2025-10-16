@@ -102,7 +102,7 @@ class PineLabsOrder(Document):
 
 @frappe.whitelist()
 def create_order(
-    order_amount,
+    order_amount=0,
     order_currency="INR",
     sequence_number=1,
     customer_details={},
