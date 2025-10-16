@@ -121,6 +121,7 @@ def create_order(
 ):
     customer_details = utils.ensure_parsed(customer_details)
     invoices = utils.ensure_parsed(invoices)
+    payment_modes = utils.ensure_parsed(payment_modes)
 
     if not store:
         store = frappe.db.exists("PineLabs Store", {"is_default": 1})
@@ -130,7 +131,7 @@ def create_order(
     if not frappe.db.exists(
         "PineLabs Terminals",
         {
-            "name": terminal,
+            "terminal": terminal,
             "parenttype": "PineLabs Store",
             "parent": store,
             "parentfield": "terminals",
@@ -180,7 +181,10 @@ def create_order(
             "terminal": terminal,
         }
     )
-    for payment_mode in payment_modes or ["0"]:  # Set "All Modes" or Mode 0 as default
+
+    if not payment_modes:
+        payment_modes = ["0"]  # Set "All Modes" or Mode 0 as default
+    for payment_mode in payment_modes:
         order_doc.append("payment_modes", {"payment_mode": payment_mode})
 
     if not order_doc.has_permission("create"):

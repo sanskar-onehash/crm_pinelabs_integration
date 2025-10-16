@@ -42,7 +42,7 @@ def create_order(
             "Customer Mobile Number": customer_mobile,
             "Customer Email ID": customer_email,
             "OriginalPlutusTransactionReferenceID": original_order_id,
-            "BankCode": utils.get_bank_code(upi_bank),
+            "BankCode": utils.get_bank_code(upi_bank) if upi_bank else None,
         }
     )
 

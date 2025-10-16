@@ -6,11 +6,11 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "pinelabs_payment_mode"
+  "payment_mode"
  ],
  "fields": [
   {
-   "fieldname": "pinelabs_payment_mode",
+   "fieldname": "payment_mode",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "PineLabs Payment Mode",
@@ -21,7 +21,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-10-14 16:45:41.826853",
+ "modified": "2025-10-16 16:49:04.406799",
  "modified_by": "Administrator",
  "module": "Pine Labs",
  "name": "PineLabs Payment Modes",
