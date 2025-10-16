@@ -22,7 +22,6 @@
   {
    "fieldname": "store_id",
    "fieldtype": "Int",
-   "in_list_view": 1,
    "label": "Store ID",
    "non_negative": 1,
    "reqd": 1,
@@ -48,7 +47,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-16 14:48:55.994431",
+ "modified": "2025-10-16 14:50:46.305742",
  "modified_by": "Administrator",
  "module": "Pine Labs",
  "name": "PineLabs Store",
