@@ -87,7 +87,7 @@ def cancel_order(order_id=None, order_doc=None, throw=True):
     if not order_doc:
         order_doc = frappe.get_doc("PineLabs Order", order_id)
 
-    cancel_response = api.get_order_status(
+    cancel_response = api.cancel_order(
         {
             "MerchantID": settings_doc.merchant_id,
             "SecurityToken": settings_doc.get_password("security_token"),

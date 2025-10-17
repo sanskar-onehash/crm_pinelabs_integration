@@ -18,7 +18,7 @@ def get_order_status(order_payload):
 
 
 def cancel_order(order_payload):
-    return client.make_delete_request(
+    return client.make_post_request(
         "/CancelTransaction",
         json=order_payload,
         parse_as_json=True,
