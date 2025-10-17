@@ -51,16 +51,45 @@ class PineLabsOrder(Document):
     def refresh_order_details(self):
         pass
 
-    def cancel_order(self):
+    def cancel_order(self, ignore_permissions=False):
+        if not ignore_permissions:
+            self.check_permission("cancel")
         cancel_result = service.cancel_order(self.name)
         if cancel_result.get("ResponseMessage") == "APPROVED":
-            if self.docstatus == 0:
-                frappe.db.set_value(
-                    "PineLabs Order", self.name, "docstatus", 1, update_modified=False
+            try:
+                if self.docstatus == 0:
+                    frappe.db.set_value(
+                        "PineLabs Order",
+                        self.name,
+                        "docstatus",
+                        1,
+                        update_modified=False,
+                    )
+                    self.reload()
+
+                if self.payment_entry:
+                    pe_doc = frappe.get_doc("Payment Entry", self.payment_entry)
+                    if pe_doc.docstatus == 0:
+                        frappe.db.set_value(
+                            "Payment Entry",
+                            pe_doc.name,
+                            "docstatus",
+                            1,
+                            update_modified=False,
+                        )
+                        pe_doc.reload()
+                    if pe_doc.docstatus != 2:
+                        pe_doc.flags.ignore_permissions = True
+                        pe_doc.cancel()
+
+                if self.docstatus != 2:
+                    self.flags.ignore_permissions = ignore_permissions
+                    self.cancel()
+            except Exception as e:
+                frappe.msgprint(
+                    "Order Cancelled on SmartGateway, but error occured while cancelling Payment Entry."
                 )
-                self.reload()
-            if self.docstatus != 2:
-                self.cancel()
+                raise e
 
     def create_order_pe(self, ignore_permissions=False):
         pe = get_payment_entry(
