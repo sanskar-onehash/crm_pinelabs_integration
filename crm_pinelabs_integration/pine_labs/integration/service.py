@@ -52,15 +52,21 @@ def create_order(
     return order
 
 
-def get_order_status(order_id, throw=True):
+def get_order_status(order_id=None, order_doc=None, throw=True):
+    if not (order_id or order_doc):
+        frappe.throw("Either of Order Id or Order Doc is required.")
+
     settings_doc = auth.get_settings()
-    order_doc = frappe.get_doc("PineLabs Order", order_id)
+
+    if not order_doc:
+        order_doc = frappe.get_doc("PineLabs Order", order_id)
+
     order_status = api.get_order_status(
         {
             "MerchantID": settings_doc.merchant_id,
             "SecurityToken": settings_doc.get_password("security_token"),
-            "Clientid": settings_doc.client_id,
-            "Storeid": utils.get_store_id(order_doc.store),
+            "ClientID": utils.get_client_id(order_doc.terminal),
+            "StoreID": utils.get_store_id(order_doc.store),
             "PlutusTransactionReferenceID": order_doc.transaction_reference_id,
             "TransactionNumber": order_id,
         }
@@ -72,15 +78,21 @@ def get_order_status(order_id, throw=True):
     return order_status
 
 
-def cancel_order(order_id, throw=True):
+def cancel_order(order_id=None, order_doc=None, throw=True):
+    if not (order_id or order_doc):
+        frappe.throw("Either of Order Id or Order Doc is required.")
+
     settings_doc = auth.get_settings()
-    order_doc = frappe.get_doc("PineLabs Order", order_id)
+
+    if not order_doc:
+        order_doc = frappe.get_doc("PineLabs Order", order_id)
+
     cancel_response = api.get_order_status(
         {
             "MerchantID": settings_doc.merchant_id,
             "SecurityToken": settings_doc.get_password("security_token"),
-            "Clientid": settings_doc.client_id,
-            "Storeid": utils.get_store_id(order_doc.store),
+            "ClientID": utils.get_client_id(order_doc.terminal),
+            "StoreID": utils.get_store_id(order_doc.store),
             "PlutusTransactionReferenceID": order_doc.transaction_reference_id,
             "Amount": order_doc.amount * 100,
         }

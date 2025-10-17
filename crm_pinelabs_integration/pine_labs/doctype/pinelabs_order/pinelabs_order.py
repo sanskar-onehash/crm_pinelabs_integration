@@ -54,7 +54,7 @@ class PineLabsOrder(Document):
     def cancel_order(self, ignore_permissions=False):
         if not ignore_permissions:
             self.check_permission("cancel")
-        cancel_result = service.cancel_order(self.name)
+        cancel_result = service.cancel_order(order_doc=self)
         if cancel_result.get("ResponseMessage") == "APPROVED":
             try:
                 if self.docstatus == 0:
