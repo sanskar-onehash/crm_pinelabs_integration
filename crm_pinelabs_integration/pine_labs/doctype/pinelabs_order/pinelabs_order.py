@@ -90,6 +90,7 @@ class PineLabsOrder(Document):
                     "Order Cancelled on SmartGateway, but error occured while cancelling Payment Entry."
                 )
                 raise e
+        return "success"
 
     def create_order_pe(self, ignore_permissions=False):
         pe = get_payment_entry(

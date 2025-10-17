@@ -19,7 +19,7 @@ def get_allowed_payment_modes(payment_modes=None):
             if payment_mode_id == 0:
                 payment_modes = None
                 break
-            payment_mode_ids.add(payment_mode_id)
+            payment_mode_ids.add(str(payment_mode_id))
 
         payment_modes = payment_mode_ids
     if not payment_modes:
