@@ -22,7 +22,7 @@ class PineLabsOrder(Document):
                 frappe.throw("Reference Type and Doc are required.")
 
     def before_submit(self):
-        if self.order_status != "Success":
+        if self.status != "Approved":
             frappe.throw("Order status should be Success to submit the order.")
 
         pe = self.create_order_pe(ignore_permissions=True)
@@ -49,7 +49,31 @@ class PineLabsOrder(Document):
             reference_doc.save(ignore_permissions=True)
 
     def refresh_order_details(self):
-        pass
+        if self.docstatus == 0:
+            updated_order_status = service.get_order_status(
+                self.order_id, self, throw=False
+            )
+            if updated_order_status.get("ResponseCode") != 0:
+                response_message = updated_order_status.get("ResponseMessage")
+                if response_message == "INVALID TRANSACTION NUMBER":
+                    self.cancel_order(ignore_permissions=True)
+                    return self
+                frappe.throw(response_message)
+
+            updated_transaction_status = updated_order_status.get("ResponseMessage")
+
+            if updated_transaction_status == "TXN APPROVED":
+                self.status = "Approved"
+                self.update(updated_order_status.get("TransactionData"))
+                # TODO: Map all payment modes
+                if self.payment_mode == "CASH":
+                    self.mode_of_payment = "Cash"
+                self.save()
+                self.submit()
+            elif updated_transaction_status != self.pinelabs_status:
+                self.pinelabs_status = updated_transaction_status
+                self.save()
+        return self
 
     def cancel_order(self, ignore_permissions=False):
         if not ignore_permissions:
@@ -151,7 +175,6 @@ def create_order(
     auto_cancel_in_mins=None,
     upi_bank=None,
     original_order_id=None,
-    subscribe_for_updates=True,
 ):
     customer_details = utils.ensure_parsed(customer_details)
     invoices = utils.ensure_parsed(invoices)

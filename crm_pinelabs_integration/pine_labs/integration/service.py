@@ -1,5 +1,10 @@
 import frappe
-from crm_pinelabs_integration.pine_labs.integration import api, auth, utils
+from crm_pinelabs_integration.pine_labs.integration import (
+    api,
+    auth,
+    utils,
+    transformers,
+)
 
 
 def generate_order_id():
@@ -75,7 +80,7 @@ def get_order_status(order_id=None, order_doc=None, throw=True):
     if throw and order_status.get("ResponseCode") != 0:
         frappe.throw(order_status.get("ResponseMessage"))
 
-    return order_status
+    return transformers.parse_order_res(order_status)
 
 
 def cancel_order(order_id=None, order_doc=None, throw=True):

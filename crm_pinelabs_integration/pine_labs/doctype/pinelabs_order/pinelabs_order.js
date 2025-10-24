@@ -11,6 +11,7 @@ function addPineLabsOrderActions(frm) {
   if (frm.is_new()) return;
 
   addCancelOrderButton(frm);
+  addRefreshOrderButton(frm);
 }
 
 function addCancelOrderButton(frm) {
@@ -45,5 +46,34 @@ function addCancelOrderButton(frm) {
     },
     null,
     "danger",
+  );
+}
+
+function addRefreshOrderButton(frm) {
+  if (frm.doc.docstatus === 1) return;
+
+  const BTN_LABEL = "Refresh Order";
+
+  frm.page.remove_inner_button(BTN_LABEL);
+  frm.page.add_inner_button(
+    BTN_LABEL,
+    () => {
+      frappe.call({
+        method:
+          "crm_pinelabs_integration.pine_labs.doctype.pinelabs_order.pinelabs_order.refresh_order_status",
+        args: { order_id: frm.doc.name },
+        freeze: true,
+        freeze_message: "Refreshing PineLabs Order.",
+        callback: function (res) {
+          if (res.message === "success") {
+            frappe.show_alert({
+              message: "Order Refreshed.",
+              indicator: "green",
+            });
+          }
+        },
+      });
+    },
+    null,
   );
 }
