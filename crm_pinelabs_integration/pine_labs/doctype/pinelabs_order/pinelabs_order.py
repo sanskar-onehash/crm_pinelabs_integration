@@ -54,8 +54,10 @@ class PineLabsOrder(Document):
     def cancel_order(self, ignore_permissions=False):
         if not ignore_permissions:
             self.check_permission("cancel")
-        cancel_result = service.cancel_order(order_doc=self)
-        if cancel_result.get("ResponseMessage") == "APPROVED":
+        cancel_result = service.cancel_order(order_doc=self, throw=False)
+        response_message = cancel_result.get("ResponseMessage")
+
+        if response_message in ["APPROVED", "TRANSACTION NOT FOUND"]:
             try:
                 if self.docstatus == 0:
                     frappe.db.set_value(
@@ -87,9 +89,11 @@ class PineLabsOrder(Document):
                     self.cancel()
             except Exception as e:
                 frappe.msgprint(
-                    "Order Cancelled on SmartGateway, but error occured while cancelling Payment Entry."
+                    "Order Cancelled on PineLabs, but error occured while cancelling Payment Entry."
                 )
                 raise e
+        elif cancel_result.get("ResponseCode") != 0:
+            frappe.throw(response_message)
         return "success"
 
     def create_order_pe(self, ignore_permissions=False):
