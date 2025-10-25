@@ -124,7 +124,7 @@ class PineLabsOrder(Document):
         pe = get_payment_entry(
             self.doctype,
             self.name,
-            party_amount=self.amount,
+            party_amount=float(self.transaction_amount),
             party_type="Customer",
             payment_type="Receive",
             reference_date=self.transaction_date,
@@ -144,7 +144,7 @@ class PineLabsOrder(Document):
             invoice_type = invoice.get("invoice_type")
             invoice_name = invoice.get("invoice")
             invoice_amount = frappe.db.get_value(
-                invoice_type, invoice_name, "grand_total"
+                invoice_type, invoice_name, "outstanding_amount"
             )
             pe.append(
                 "references",
@@ -306,8 +306,8 @@ def parse_reference_invoices(
             frappe.throw("Invoice is already paid.")
 
         invoice_customer = utils.get_or_throw(invoice_doc, "customer")
-        invoice_currency = utils.get_or_throw(invoice_doc, "currency")
-        invoice_amount = utils.get_or_throw(invoice_doc, "grand_total")
+        invoice_currency = utils.get_or_throw(invoice_doc, "party_account_currency")
+        invoice_amount = utils.get_or_throw(invoice_doc, "outstanding_amount")
         invoice_company = utils.get_or_throw(invoice_doc, "company")
 
         amount += invoice_amount
