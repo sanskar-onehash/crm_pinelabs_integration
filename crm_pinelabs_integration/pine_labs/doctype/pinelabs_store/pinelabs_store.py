@@ -11,7 +11,7 @@ class PineLabsStore(Document):
         self.validate_default()
 
     def validate_default(self):
-        if frappe.db.exists(
+        if self.is_default and frappe.db.exists(
             "PineLabs Store", {"is_default": 1, "name": ["!=", self.name]}
         ):
             frappe.throw(
